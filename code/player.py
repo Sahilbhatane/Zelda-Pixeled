@@ -88,14 +88,14 @@ class Player(Entity):
 				self.direction.x = 0
 
 			# attack input 
-			if keys[pygame.K_SPACE]:
+			if pygame.mouse.get_pressed()[0]:
 				self.attacking = True
 				self.attack_time = pygame.time.get_ticks()
 				self.create_attack()
 				self.weapon_attack_sound.play()
 
 			# magic input 
-			if keys[pygame.K_LCTRL]:
+			if pygame.mouse.get_pressed()[2]:
 				self.attacking = True
 				self.attack_time = pygame.time.get_ticks()
 				style = list(magic_data.keys())[self.magic_index]
@@ -201,7 +201,7 @@ class Player(Entity):
 
 	def energy_recovery(self):
 		if self.energy < self.stats['energy']:
-			self.energy += 0.01 * self.stats['magic']
+			self.energy += 0.1 * self.stats['magic']
 		else:
 			self.energy = self.stats['energy']
 

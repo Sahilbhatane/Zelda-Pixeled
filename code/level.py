@@ -151,9 +151,31 @@ class Level:
 		if self.game_paused:
 			self.upgrade.display()
 		else:
-			self.visible_sprites.update()
-			self.visible_sprites.enemy_update(self.player)
-			self.player_attack_logic()
+			if self.player.health <= 0:
+				self.display_game_over()
+			else:
+				self.visible_sprites.update()
+				self.visible_sprites.enemy_update(self.player)
+				self.player_attack_logic()
+    
+	def display_game_over(self):
+		self.display_surface.fill((0, 0, 0))  # Fill with black color
+		font = pygame.font.Font(None, 36)
+		game_over_text = font.render("Game Over", True, (255, 255, 255))  # White color
+		text_rect = game_over_text.get_rect(center=(WIDTH // 2, HEIGTH // 2))
+		self.display_surface.blit(game_over_text, text_rect)
+		pygame.display.flip()
+		while True:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT:
+					pygame.quit()
+					#sys.exit()
+
+				if event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_ESCAPE:
+						pygame.quit()
+						#sys.exit()
+
 		
 
 class YSortCameraGroup(pygame.sprite.Group):
