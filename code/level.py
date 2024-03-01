@@ -175,9 +175,7 @@ class Level:
 					if event.key == pygame.K_ESCAPE:
 						pygame.quit()
 						#sys.exit()
-
-		
-
+			pygame.init()	
 class YSortCameraGroup(pygame.sprite.Group):
 	def __init__(self):
 
