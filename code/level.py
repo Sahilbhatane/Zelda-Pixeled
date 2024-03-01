@@ -170,10 +170,11 @@ class Level:
 				if event.type == pygame.QUIT:
 					pygame.quit()
 					#sys.exit()
-
+					quit()
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_ESCAPE:
 						pygame.quit()
+						quit()
 						#sys.exit()
 			pygame.init()	
 class YSortCameraGroup(pygame.sprite.Group):
